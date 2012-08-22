@@ -18,7 +18,7 @@ if !exists('g:evervim_workdir')
 endif
 
 if !isdirectory(g:evervim_workdir)
-    call mkdir(g:evervim_workdir, 'p')
+    call mkdir(g:evervim_workdir, 'p', 0700)
 endif
 
 if !exists('g:evervim_username')

@@ -12,10 +12,16 @@
 function! evervim#logincheck() " {{{
     try
     python << EOF
+import os
+import stat
 try:
     Evervimmer.getInstance().auth()
     print 'login successful.'
     f = open(os.path.join(vim.eval('g:evervim_workdir'),'evervim_account.txt'), 'w')
+	#
+	# ensure file is only accessible to current user.
+	#
+	os.chmod(f.name, stat.S_IWRITE | stat.S_IREAD)
     f.write(vim.eval("g:evervim_username"))
     f.write("\n")
     password = vim.eval("g:evervim_password")
